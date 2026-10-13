@@ -1,0 +1,18 @@
+{
+  "subject": "UW_0020",
+  "muscle": "left tibialis anterior",
+  "segmentation_label": 59,
+  "timepoints": [
+    "TP1",
+    "TP2"
+  ],
+  "voxel_spacing_mm_xyz": [
+    1.1160999536514282,
+    1.1160999536514282,
+    4.0
+  ],
+  "half_slice_shape_yx": [
+    266,
+    224
+  ]
+}
