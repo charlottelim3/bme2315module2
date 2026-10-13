@@ -1,0 +1,17 @@
+subject,timepoint,slice_id,percent_along_muscle,z_index,distance_from_muscle_start_mm,water_file,fat_file,mask_file
+UW_0020,TP1,01,10,41,24.0,TP1_slice_01_water.npy,TP1_slice_01_fat.npy,TP1_slice_01_mask.npy
+UW_0020,TP1,02,20,46,44.0,TP1_slice_02_water.npy,TP1_slice_02_fat.npy,TP1_slice_02_mask.npy
+UW_0020,TP1,03,30,52,68.0,TP1_slice_03_water.npy,TP1_slice_03_fat.npy,TP1_slice_03_mask.npy
+UW_0020,TP1,04,40,58,92.0,TP1_slice_04_water.npy,TP1_slice_04_fat.npy,TP1_slice_04_mask.npy
+UW_0020,TP1,05,50,64,116.0,TP1_slice_05_water.npy,TP1_slice_05_fat.npy,TP1_slice_05_mask.npy
+UW_0020,TP1,06,60,69,136.0,TP1_slice_06_water.npy,TP1_slice_06_fat.npy,TP1_slice_06_mask.npy
+UW_0020,TP1,07,70,75,160.0,TP1_slice_07_water.npy,TP1_slice_07_fat.npy,TP1_slice_07_mask.npy
+UW_0020,TP1,08,80,81,184.0,TP1_slice_08_water.npy,TP1_slice_08_fat.npy,TP1_slice_08_mask.npy
+UW_0020,TP2,01,10,40,24.0,TP2_slice_01_water.npy,TP2_slice_01_fat.npy,TP2_slice_01_mask.npy
+UW_0020,TP2,02,20,46,48.0,TP2_slice_02_water.npy,TP2_slice_02_fat.npy,TP2_slice_02_mask.npy
+UW_0020,TP2,03,30,52,72.0,TP2_slice_03_water.npy,TP2_slice_03_fat.npy,TP2_slice_03_mask.npy
+UW_0020,TP2,04,40,58,96.0,TP2_slice_04_water.npy,TP2_slice_04_fat.npy,TP2_slice_04_mask.npy
+UW_0020,TP2,05,50,64,120.0,TP2_slice_05_water.npy,TP2_slice_05_fat.npy,TP2_slice_05_mask.npy
+UW_0020,TP2,06,60,71,148.0,TP2_slice_06_water.npy,TP2_slice_06_fat.npy,TP2_slice_06_mask.npy
+UW_0020,TP2,07,70,77,172.0,TP2_slice_07_water.npy,TP2_slice_07_fat.npy,TP2_slice_07_mask.npy
+UW_0020,TP2,08,80,83,196.0,TP2_slice_08_water.npy,TP2_slice_08_fat.npy,TP2_slice_08_mask.npy
