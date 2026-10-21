@@ -1,0 +1,8 @@
+measure,comparison,n_before,n_removed,n_remaining,removed_subject_ids
+Dorsiflexion,Baseline-T1,26,1,25,32-0030
+Clinical severity,Baseline-T1,30,3,27,"1-0019, 13-0003, 13-0009"
+Dorsiflexion,Baseline-T2,23,0,23,
+Clinical severity,Baseline-T2,24,1,23,1-0028
+Dorsiflexion,T1-T2,23,2,21,"1-0028, 13-0007"
+Clinical severity,T1-T2,24,2,22,"1-0028, 13-0009"
+STIR quant,Baseline-T1,10,1,9,13-0008
