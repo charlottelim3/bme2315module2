@@ -1,0 +1,10 @@
+dataset,comparison,n,mean_percent_change,sd_percent_change
+Dorsiflexion percent change,Baseline-T1,26,6.992855793841518,29.735676787312695
+Dorsiflexion percent change,Baseline-T2,26,7.490943519852016,35.04144377960336
+Dorsiflexion percent change,T1-T2,27,-1.5880270578328524,20.603566180994946
+STIR quant percent change,Baseline-T1,10,431.8701195822352,1272.5662672375925
+STIR quant percent change,Baseline-T2,10,863.7402391644704,2545.132534475185
+STIR quant percent change,T1-T2,18,17.354827293032923,109.45975769043277
+Clinical severity percent change,Baseline-T1,30,2.9134001851256235,20.48547414279751
+Clinical severity percent change,Baseline-T2,30,4.748074915398719,32.14404163799998
+Clinical severity percent change,T1-T2,30,3.192760385484482,30.7691715601506
