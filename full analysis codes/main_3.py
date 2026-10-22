@@ -300,7 +300,7 @@ for ax, mkey, mname, label, ckey in panels:
     ss_tot = ((pair["y"] - pair["y"].mean()) ** 2).sum()
     r2 = 1 - ss_res / ss_tot if ss_tot else np.nan
     xs = np.linspace(pair["x"].min(), pair["x"].max(), 100)
-    ax.plot(xs, slope * xs + intercept, color="black",
+    ax.plot(xs, slope * xs + intercept, color="red",
             label=f"y={slope:.3f}x {intercept:+.2f}\nR\u00b2={r2:.3f}")
     ax.legend(fontsize=8)
     ax.set_title(f"{mname}: {label} (n={len(pair)})")
