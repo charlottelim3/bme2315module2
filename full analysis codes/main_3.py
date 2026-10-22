@@ -23,6 +23,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
+from scipy import stats
 
 CSV_PATH = "Module2_FSHD_Dataset.csv"
 PAUSE_AFTER_CHECK = True      # show the interpolation check plot before continuing
@@ -319,6 +320,7 @@ print(reg.round(4).to_string(index=False))
 # ---------------------------------------------------------------- mean +/- SD plots
 # One separate plot (panel) per measure. Each bar = mean, error bar = SD,
 # dots = individual patients. STIR only has Baseline-T1.
+# A one-sample t-test (H0: mean percent change = 0) is run for every bar.
 fig2, axes2 = plt.subplots(1, 3, figsize=(17, 6.5))
 rng = np.random.default_rng(3)
 summary_rows = []
@@ -332,8 +334,16 @@ for ax, mkey in zip(axes2, ["dors", "stir", "severity"]):
         values = pct[f"{mkey}_{ckey}"].dropna()
         mean = values.mean() if len(values) else np.nan
         sd = values.std(ddof=1) if len(values) > 1 else np.nan
+
+        # One-sample t-test against 0 (needs at least 2 values and some variance).
+        if len(values) > 1 and values.nunique() > 1:
+            t_stat, p_val = stats.ttest_1samp(values, 0.0)
+        else:
+            t_stat, p_val = np.nan, np.nan
+
         summary_rows.append({"measure": mname, "comparison": label, "elapsed_months": elapsed,
-                             "n": len(values), "mean_percent_change": mean, "sd_percent_change": sd})
+                             "n": len(values), "mean_percent_change": mean, "sd_percent_change": sd,
+                             "t_stat": t_stat, "p_value": p_val})
         if values.empty:
             continue
         sd0 = 0.0 if np.isnan(sd) else sd
@@ -341,8 +351,9 @@ for ax, mkey in zip(axes2, ["dors", "stir", "severity"]):
         ax.errorbar(i, mean, yerr=sd0, fmt="none", ecolor="black", capsize=6)
         ax.scatter(i + rng.uniform(-0.15, 0.15, len(values)), values,
                    s=18, color="black", alpha=0.5, zorder=3)
-        # n / mean / SD printed above the plot area so they never overlap the data.
-        ax.text(i, 1.01, f"n={len(values)}\nmean={mean:.1f}\nSD={sd0:.1f}",
+        # n / mean / SD / p printed above the plot area so they never overlap the data.
+        p_txt = "p=n/a" if np.isnan(p_val) else (f"p={p_val:.3f}" if p_val >= 0.001 else "p<0.001")
+        ax.text(i, 1.01, f"n={len(values)}\nmean={mean:.1f}\nSD={sd0:.1f}\n{p_txt}",
                 transform=stat_trans, ha="center", va="bottom", fontsize=9)
         lo_all = min(lo_all, values.min(), mean - sd0)
         hi_all = max(hi_all, values.max(), mean + sd0)
@@ -357,13 +368,15 @@ for ax, mkey in zip(axes2, ["dors", "stir", "severity"]):
     ax.set_xticklabels([f"{c[0]}\n({c[3]:g} mo)" for c in comps], fontsize=10)
     ax.set_xlim(-0.6, len(comps) - 0.4)
     ax.set_ylabel("Percent change (%)")
-    ax.set_title(f"{mname} percent change", pad=55)
-fig2.suptitle("Mean \u00b1 SD of patient-level percent changes (limbs averaged)")
+    ax.set_title(f"{mname} percent change", pad=70)   # extra room for the p-value line
+fig2.suptitle("Mean \u00b1 SD of patient-level percent changes (limbs averaged); "
+              "p = one-sample t-test vs 0")
 fig2.tight_layout()
 fig2.savefig("mean_sd_plots.png", dpi=150)
 
 summary = pd.DataFrame(summary_rows)
 summary.to_csv("summary_stats.csv", index=False)
-print("\nSummary statistics:")
-print(summary.round(2).to_string(index=False))
+print("\nSummary statistics (one-sample t-test of percent change vs 0):")
+print(summary.round({"elapsed_months": 2, "mean_percent_change": 2, "sd_percent_change": 2,
+                     "t_stat": 3, "p_value": 4}).to_string(index=False))
 plt.show()
